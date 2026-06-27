@@ -3,6 +3,7 @@ Discord Q&A パーサー
 エクスポートしたJSONから質問と回答のペアを抽出する
 """
 import json
+import os
 import sys
 
 sys.stdout.reconfigure(encoding='utf-8')
@@ -101,6 +102,23 @@ def parse_qa(input_file):
             "message_id": q['id']
         }
         qa_pairs.append(qa_pair)
+
+    # Preserve approved status for existing entries.
+    # Entries already in qa_pairs.json default to approved=True (already published).
+    # Genuinely new entries get no approved field (treated as pending review).
+    if os.path.exists(OUTPUT_FILE):
+        with open(OUTPUT_FILE, 'r', encoding='utf-8') as ef:
+            old_data = json.load(ef)
+        existing_approved = {
+            qa['message_id']: qa.get('approved', True)
+            for qa in old_data
+            if 'message_id' in qa
+        }
+        for qa in qa_pairs:
+            mid = qa['message_id']
+            if mid in existing_approved:
+                qa['approved'] = existing_approved[mid]
+            # else: new entry — leave without approved field (pending review)
 
     return qa_pairs
 

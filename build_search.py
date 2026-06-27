@@ -752,7 +752,9 @@ def main():
     with open(INPUT_FILE, "r", encoding="utf-8") as f:
         qa_pairs = json.load(f)
 
-    print(f"Loaded {len(qa_pairs)} Q&A pairs")
+    total_loaded = len(qa_pairs)
+    qa_pairs = [qa for qa in qa_pairs if qa.get("approved") is True]
+    print(f"Loaded {total_loaded} Q&A pairs ({len(qa_pairs)} approved, {total_loaded - len(qa_pairs)} pending review)")
 
     html = build_html(qa_pairs)
 

@@ -3,7 +3,7 @@
 #   1. DiscordChatExporter で最新をエクスポート（output.json を更新）
 #   2. この discord-qa-db フォルダで .\update.ps1 を実行
 #
-# 処理: parse_qa.py（構造化）-> build_search.py（HTML生成）
+# 処理: parse_qa.py（構造化）-> approve.py（レビュー）-> build_search.py（HTML生成）
 # 成果物: search.html / index.html を最新Q&Aで再生成する
 
 $ErrorActionPreference = "Stop"
@@ -28,15 +28,23 @@ $before = Get-QaCount
 Write-Host "更新前のQ&A件数: $before 件"
 
 # ① 構造化
-Write-Host "`n[1/2] parse_qa.py 実行中..." -ForegroundColor Yellow
+Write-Host "`n[1/3] parse_qa.py 実行中..." -ForegroundColor Yellow
 python parse_qa.py
 if ($LASTEXITCODE -ne 0) {
     Write-Host "parse_qa.py が失敗しました。中断します。" -ForegroundColor Red
     exit 1
 }
 
-# ② HTML生成（search.html + index.html）
-Write-Host "`n[2/2] build_search.py 実行中..." -ForegroundColor Yellow
+# ② レビュー（承認待ちがあればブラウザが開く）
+Write-Host "`n[2/3] approve.py 実行中（ブラウザでレビュー）..." -ForegroundColor Yellow
+python approve.py
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "approve.py が失敗しました。中断します。" -ForegroundColor Red
+    exit 1
+}
+
+# ③ HTML生成（承認済みのみ）
+Write-Host "`n[3/3] build_search.py 実行中..." -ForegroundColor Yellow
 python build_search.py
 if ($LASTEXITCODE -ne 0) {
     Write-Host "build_search.py が失敗しました。中断します。" -ForegroundColor Red
