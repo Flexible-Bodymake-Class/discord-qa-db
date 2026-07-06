@@ -1,4 +1,4 @@
-# FBCサロン Q&A 検索アプリ
+﻿# FBCサロン Q&A 検索アプリ
 
 DiscordのQ&Aチャンネルの質問と回答を検索できるWebサイト。
 GitHub Pages で公開中。
@@ -13,7 +13,7 @@ GitHub Pages で公開中。
 `TOKEN` は Discord の認証トークンに差し替える。
 
 ```powershell
-cd "C:\Users\tomo4\workspace\03_personal\02_Dev\FBC\discord-chat-exporter"
+cd "C:\Users\tomo4\workspace\01_work\03_clients\01_LYNO\04_DEV\検索サイト開発_FBC\discord-chat-exporter"
 .\DiscordChatExporter.Cli.exe export -t "TOKEN" -c 1444479247669530664 -f Json -o output.json
 ```
 
@@ -22,7 +22,7 @@ cd "C:\Users\tomo4\workspace\03_personal\02_Dev\FBC\discord-chat-exporter"
 ### ② サイトデータを更新（ワンコマンド）
 
 ```powershell
-cd "C:\Users\tomo4\workspace\03_personal\02_Dev\FBC\discord-qa-db"
+cd "C:\Users\tomo4\workspace\01_work\03_clients\01_LYNO\04_DEV\検索サイト開発_FBC\discord-qa-db"
 .\update.ps1
 ```
 
