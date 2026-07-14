@@ -19,7 +19,7 @@ function Get-QaCount {
 Write-Host "=== FBC Q&A サイト更新 ===" -ForegroundColor Cyan
 
 # 入力チェック
-if (-not (Test-Path "..\discord-chat-exporter\output.json")) {
+if (-not (Test-Path "C:\Users\tomo4\tools\discord-chat-exporter\output.json")) {
     Write-Host "エラー: output.json が見つかりません。先にDiscordChatExporterでエクスポートしてください。" -ForegroundColor Red
     exit 1
 }

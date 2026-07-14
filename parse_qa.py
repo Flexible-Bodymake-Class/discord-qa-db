@@ -8,7 +8,7 @@ import sys
 
 sys.stdout.reconfigure(encoding='utf-8')
 
-INPUT_FILE = "../discord-chat-exporter/output.json"
+INPUT_FILE = "C:/Users/tomo4/tools/discord-chat-exporter/output.json"
 OUTPUT_FILE = "qa_pairs.json"
 
 GUILD_ID = "1441619538293686387"

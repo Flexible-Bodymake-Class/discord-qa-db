@@ -13,7 +13,7 @@ GitHub Pages で公開中。
 `TOKEN` は Discord の認証トークンに差し替える。
 
 ```powershell
-cd "C:\Users\tomo4\workspace\01_work\03_clients\01_LYNO\04_DEV\検索サイト開発_FBC\discord-chat-exporter"
+cd "C:\Users\tomo4\tools\discord-chat-exporter"
 .\DiscordChatExporter.Cli.exe export -t "TOKEN" -c 1444479247669530664 -f Json -o output.json
 ```
 
