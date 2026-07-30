@@ -7,6 +7,7 @@ Q&A JSON → CSV変換
 """
 import json
 import csv
+import os
 import sys
 
 sys.stdout.reconfigure(encoding='utf-8')
@@ -50,6 +51,8 @@ def main():
 
     if not answered:
         print("新しい Q&A はありません。")
+        if os.path.exists(OUTPUT_FILE):
+            os.remove(OUTPUT_FILE)
         return
 
     with open(OUTPUT_FILE, 'w', encoding='utf-8', newline='') as f:
