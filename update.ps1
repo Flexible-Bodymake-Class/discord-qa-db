@@ -19,7 +19,7 @@ if (-not (Test-Path "C:\Users\tomo4\tools\discord-chat-exporter\output.json")) {
 
 # ① 構造化
 Write-Host "`n[1/3] parse_qa.py 実行中..." -ForegroundColor Yellow
-python parse_qa.py
+python -u parse_qa.py
 if ($LASTEXITCODE -ne 0) {
     Write-Host "parse_qa.py が失敗しました。中断します。" -ForegroundColor Red
     exit 1
@@ -27,7 +27,7 @@ if ($LASTEXITCODE -ne 0) {
 
 # ② 差分CSV抽出
 Write-Host "`n[2/3] export_csv.py --since 実行中..." -ForegroundColor Yellow
-python export_csv.py --since
+python -u export_csv.py --since
 if ($LASTEXITCODE -ne 0) {
     Write-Host "export_csv.py が失敗しました。中断します。" -ForegroundColor Red
     exit 1
@@ -35,7 +35,7 @@ if ($LASTEXITCODE -ne 0) {
 
 # ③ スプレッドシートに自動追記
 Write-Host "`n[3/3] append_to_sheet.py 実行中..." -ForegroundColor Yellow
-python append_to_sheet.py
+python -u append_to_sheet.py
 if ($LASTEXITCODE -ne 0) {
     Write-Host "append_to_sheet.py が失敗しました。中断します。" -ForegroundColor Red
     exit 1

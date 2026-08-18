@@ -3,3 +3,5 @@ qa - コピー.csv
 qa_for_notion.csv
 qa.csv
 credentials/
+token.txt
+logs/
